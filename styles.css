@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;800&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+}
+
+.OuterHeader {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+
+  min-height: 70px;
+
+  z-index: 1;
+}
+.OuterHeader div {
+  width: 100%;
+  padding-left: 20px;
+}
+
+.leftHeader {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: white;
+  align-self: center;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  font-size: 1.5rem;
+
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar div {
+  width: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+  .OuterHeader {
+    flex-direction: column;
+  }
+}
+
+.Container {
+  width: 80%;
+  min-width: 300px;
+  min-height: 85vh;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.Content {
+  flex-basis: 100%;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-tile {
+  margin: -20px;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+.BoxContent {
+  margin: auto;
+}
+
+.BoxContent p {
+  text-align: center;
+}
+
+.BoxContent p:nth-of-type(2) {
+  font-size: 2rem;
+}
+
+.Hello {
+  font-size: 10rem;
+}
+
+.ProjectBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  row-gap: 50px;
+}
+
+.projectsin {
+  width: repeat(2, 1fr);
+  height: 400px;
+  min-width: 300px;
+  flex-basis: 40%;
+  max-width: 50%;
+  text-align: center;
+  font-size: 2rem;
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px 1px 60px 1px;
+}
+
+.projimg {
+  max-width: 100%;
+  max-height: 300px;
+  position: relative;
+  bottom: 0;
+}
+
+.projectsin p {
+  color: black;
+}
