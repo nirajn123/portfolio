@@ -123,14 +123,19 @@ var fib = function(n) {
     //While the current number is less than the input param
   while (true){
       const last = series.length;
-      if (last>num) break;
+      if (last>n) break;
       //assign new current number by adding last two digits from the fibbonacci series
     currentnum = series[last-2]+series[last-1];
       //if we haven't reached the input number yet then add the number to the series
     series.push(currentnum);
   }
-    return series.reduce((sum,curr)=>sum+curr);
+  
+  return currentnum;
 };
+
+console.log(fib(7));
+console.log(fib(6));
+console.log(fib(4));
 
 /**
  * *******
