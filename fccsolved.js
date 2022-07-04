@@ -171,3 +171,94 @@ function sumPrimes(num) {
 }
 
 console.log(sumPrimes(10));
+
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    let numOneMed,numTwoMed;
+    let numOneLen=nums1.length;
+    let numTwoLen=nums2.length;
+    if(numOneLen == 0) numOneMed = 0;
+    else numOneMed = nums1.reduce((sum,next)=>sum+next)/numOneLen;
+    if(numTwoLen == 0) numTwoMed = 0;
+    else numTwoMed = nums2.reduce((sum,next)=>sum+next)/numTwoLen;   
+    return ( numOneMed + numTwoMed)/2; 
+};
+
+
+
+/*************
+*
+*
+**
+
+let primeNum = [2,3,5,7,11,13,17,19,23, 29, 31, 37, 41];
+function smallestCommons(arr) {
+  //First check that arr is the right numerical order
+  //if no, sort it.
+  let newArr=[];
+  let factoredArr = [];
+  let vanIn = [];
+  let vanOut = [];
+  let vanFlag = false;
+  if(arr[0]>arr[1]) arr.sort((a,b)=>a-b);
+  //Now add all the numbers in the sequence
+  for(let i=arr[0];i<=arr[1];i++) newArr.push(i);
+  //New let's create factors for each
+  for (let j=0;j<newArr.length;j++){
+    //Only create factor if number is 2 or larger
+    if(newArr[j]>1){
+      factoredArr.push(factorise(newArr[j]));
+    }    
+  }
+  //Now we need to create two separate arrays to capture Ven diagram
+  //so first will loop through all the sub-arrays
+  for (let k=0;k<factoredArr.length;k++)
+  {
+    //for each of the sub-array, we check if the length is not zero
+    if (factoredArr[k].length ==0){
+      //if the array has values then we create a variable to check
+      let checkValue = factoredArr[k][0];
+      //Now we check this value in remaining arrays
+      for (let l=0;l<factoredArr[k].length;l++)
+      {
+        if(factoredArr[l].length ==0||l==k){
+            if(checkValue == factoredArr[l][0])
+            {
+              vanIn.push(checkValue);
+              factoredArr[l][0].shift(0);
+            }
+          }
+        }          
+      }
+    }
+  console.log(factoredArr);
+  return arr;
+}
+
+//A recursive function to find the factors
+function factorise(n){
+  let i=0;
+  let fArr=[];
+  while(i<primeNum.length||n>primeNum[i])
+  {
+    if(n%primeNum[i]==0){
+      fArr.push(primeNum[i]);
+      fArr.push(...factorise(n/primeNum[i]));
+      break;
+    } 
+    i++;
+  }
+  console.log(fArr);
+  return 1;
+  //return fArr;
+}
+
+//console.log(factorise(185));
+
+//smallestCommons([1,5]);
+//smallestCommons([10,5]);
