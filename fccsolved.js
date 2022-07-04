@@ -194,17 +194,19 @@ var findMedianSortedArrays = function(nums1, nums2) {
 /*************
 *
 *
-**
+**/
 
 let primeNum = [2,3,5,7,11,13,17,19,23, 29, 31, 37, 41];
 function smallestCommons(arr) {
-  //First check that arr is the right numerical order
-  //if no, sort it.
   let newArr=[];
   let factoredArr = [];
   let vanIn = [];
   let vanOut = [];
   let vanFlag = false;
+  let searchItem = 0;
+  let k=0;
+  //First check that arr is the right numerical order
+  //if no, sort it.
   if(arr[0]>arr[1]) arr.sort((a,b)=>a-b);
   //Now add all the numbers in the sequence
   for(let i=arr[0];i<=arr[1];i++) newArr.push(i);
@@ -215,29 +217,42 @@ function smallestCommons(arr) {
       factoredArr.push(factorise(newArr[j]));
     }    
   }
+  //console.log(factoredArr);
+
   //Now we need to create two separate arrays to capture Ven diagram
   //so first will loop through all the sub-arrays
-  for (let k=0;k<factoredArr.length;k++)
-  {
-    //for each of the sub-array, we check if the length is not zero
-    if (factoredArr[k].length ==0){
-      //if the array has values then we create a variable to check
-      let checkValue = factoredArr[k][0];
-      //Now we check this value in remaining arrays
-      for (let l=0;l<factoredArr[k].length;l++)
-      {
-        if(factoredArr[l].length ==0||l==k){
-            if(checkValue == factoredArr[l][0])
-            {
-              vanIn.push(checkValue);
-              factoredArr[l][0].shift(0);
-            }
+  while(k<factoredArr.length){
+    //make sure the flag is set to false
+    vanFlag = false;
+    //for each of the sub-array, we check if the length is not zero, if yes go to the next sub-array
+    if (factoredArr[k].length ==0) k++;
+    else{
+      //pick the first item and delete it from the array
+      console.log(factoredArr);
+      searchItem = factoredArr[k][0];
+      factoredArr[k].shift();
+      for (let l=k+1;l<factoredArr.length;l++){
+            //now search the item in the next non empty array
+          if (factoredArr[l].length !=0){
+             for (let m=0;m<factoredArr[l].length;m++)
+             {
+               if (searchItem==factoredArr[l][m]){
+                //if a match is found in the next set of arrays set flag to true
+                //and delete the item
+                vanFlag = true;
+                factoredArr[l].splice(m,1);
+                break;
+               }
+             } 
           }
-        }          
-      }
-    }
-  console.log(factoredArr);
-  return arr;
+        }
+        //if match was found put it in the In array, if not the out array
+        if(vanFlag) vanIn.push (searchItem);
+        else vanOut.push(searchItem);
+      }   
+  }
+  console.log("In ",vanIn, "Out ",vanOut);
+  return vanIn.reduce((prod,item)=>prod*item)*vanOut.reduce((prod,item)=>prod*item);
 }
 
 //A recursive function to find the factors
@@ -253,12 +268,7 @@ function factorise(n){
     } 
     i++;
   }
-  console.log(fArr);
-  return 1;
-  //return fArr;
+  return fArr;
 }
 
-//console.log(factorise(185));
-
-//smallestCommons([1,5]);
-//smallestCommons([10,5]);
+console.log(smallestCommons([2,10]));
