@@ -109,6 +109,30 @@ console.log(sumFibs(75025));
 
 
 /**
+ * Fibbonnaci number - given a number calculate the sum.
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function(n) {
+    //Define the series to hold fibbonacci, and current number to compare 
+  if (n==0) return 0;
+  if (n==1) return 1;
+  let series = [0,1];
+  let currentnum = 1;
+
+    //While the current number is less than the input param
+  while (true){
+      const last = series.length;
+      if (last>num) break;
+      //assign new current number by adding last two digits from the fibbonacci series
+    currentnum = series[last-2]+series[last-1];
+      //if we haven't reached the input number yet then add the number to the series
+    series.push(currentnum);
+  }
+    return series.reduce((sum,curr)=>sum+curr);
+};
+
+/**
  * *******
  * A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4
  * Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.
