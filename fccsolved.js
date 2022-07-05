@@ -272,3 +272,27 @@ function factorise(n){
 }
 
 console.log(smallestCommons([2,10]));
+
+/*********
+* Drop elemments using a functions until the function returns first true
+*
+*
+*
+***********/
+
+
+function dropElements(arr, func) {
+  let newArr=[...arr];
+  for(let i=0;i<arr.length;i++){
+    if(func(arr[i])===false)
+    {
+      console.log("Here")
+      newArr.shift(0);
+    }
+    else break;
+  }
+  console.log(newArr);
+  return newArr;
+}
+
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;})
