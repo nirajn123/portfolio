@@ -518,3 +518,48 @@ function palindrome(str) {
 console.log(palindrome("eye"));
 console.log(palindrome("1 eye for of 1 eye."));
 
+/***********
+* Roman Numeral Converter
+*
+*
+**********/
+function convertToRoman(num) {
+let valMap = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1}
+let remVal = num;
+let str ="";
+while(remVal>0){
+  for(let key in valMap){
+    let calc = Math.floor(remVal/valMap[key]);
+    for (let i=0;i<calc;i++)
+    {
+      str+=key;
+      remVal -= valMap[key];
+    }
+  }
+}
+ return str;
+}
+
+/********
+* ROT13 Cipher
+*
+***********/
+function rot13(str) {
+  let alphaStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let alphaArr = alphaStr.split("");
+  //console.log(alphaArr.length);
+  let ciArr = str.split("");
+  let retStr = ""
+
+  for(let i=0;i<ciArr.length;i++){
+    let index = alphaArr.findIndex((item) => ciArr[i]===item);
+    retStr += index>=0 ? (index<13? alphaArr[index+13]: alphaArr[((index+13)%26)]) : ciArr[i];       
+  }
+  console.log(retStr);
+  return retStr;
+}
+
+rot13("SERR PBQR PNZC");
+
+
+console.log(convertToRoman(3999));
