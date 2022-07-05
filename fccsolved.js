@@ -582,10 +582,62 @@ telephoneCheck("(5551A) 555-5555");
 telephoneCheck("555-555-5555");
 
 
+/*******
+* Cash Register - final project
+*
+*********/
 
 
 
+function checkCashRegister(price, cash, cid) {
+  let currency = { "ONE HUNDRED": 10000,
+  "TWENTY": 2000,
+  "TEN":1000,
+  "FIVE":500,
+  "ONE":100,
+  "QUARTER":25,
+  "DIME":10,
+  "NICKEL":5,
+  "PENNY":1
+  }
+  //Find the change in penny
+  let remVal = (cash-price)*100;
+  let change = [];
+  for(let key in currency){
+    //for each key in currency divide the change
+    let calc = Math.floor(remVal/currency[key]);
+    if(calc>=1){
+    //If the change to be given is lower than the bill
+    //check how many bills do we have in register
+    //it is important that this is checked for the right type of bill
+        let maxAvail = 0;
+          for(let j=0;j<cid.length;j++){
+            if(cid[j][0]===key) maxAvail = cid[j][1];
+          }
+        const obj =[];
+        //now populate the change array
+        obj[0] = key;
+        obj[1] = (Math.min(calc*currency[key],maxAvail*100))/100;
+        change.push(obj);
+        remVal -= obj[1]*100;     
+    }
+}
+  let retObj = {};
+  if (remVal>0) {
+    retObj.status = "INSUFFICIENT_FUNDS";
+    retObj.change = [];
+  }
+  else{
+    //TODO: Amend the code so we track the register values and set status
+    remVal ==0? retObj.status = "CLOSED": retObj.status = "OPEN";
+    retObj.change = [...change];
+  }   
+  return retObj;
+}
 
-
+//console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+//console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+//console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
 
 
