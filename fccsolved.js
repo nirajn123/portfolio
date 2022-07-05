@@ -276,8 +276,6 @@ console.log(smallestCommons([2,10]));
 /*********
 * Drop elemments using a functions until the function returns first true
 *
-*
-*
 ***********/
 
 
@@ -296,3 +294,22 @@ function dropElements(arr, func) {
 }
 
 dropElements([1, 2, 3, 4], function(n) {return n >= 3;})
+
+
+/*********
+* Flatten a nested array. You must account for varying levels of nesting.
+*
+***********/
+
+function steamrollArray(arr) {
+  let newArr =[]
+  for(let i=0;i<arr.length;i++)
+  {
+    if(Array.isArray(arr[i])) {
+      newArr.push(...steamrollArray(arr[i]));}
+    else newArr.push(arr[i]);
+  }
+  return newArr;
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
