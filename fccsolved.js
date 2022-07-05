@@ -472,3 +472,49 @@ function orbitalPeriod(arr) {
 }
 
 console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]));
+
+
+/*****
+* Leetcode palindrom checker
+*
+*
+**********/
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+    if(x<0) return false;
+    else{
+        let myfunction = num => Number(num);
+        let myarr = Array.from(String(x),myfunction);
+        for (let i=0; i<myarr.length/2; i++) {
+            if(myarr[i]!=myarr[myarr.length-i-1]) return false;
+        }
+        return true;
+    }
+};
+
+
+/******
+* FCC Palindrom Checker
+*
+*********/
+
+function palindrome(str) {
+  //Return false for empty string
+  if(str.length<=0) return false;
+  //Remove all non-alpha chars
+  str = str.replace(/(\W)|(_)/g,"").toLowerCase();
+  let myarr = str.split("");
+  if (myarr.length ==0) return true;
+  for (let i=0; i<myarr.length/2; i++) {
+    if(myarr[i]!=myarr[myarr.length-i-1]) return false;
+  }        
+    return true;
+}
+
+console.log(palindrome("eye"));
+console.log(palindrome("1 eye for of 1 eye."));
+
