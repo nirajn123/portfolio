@@ -343,3 +343,88 @@ function truthCheck(collection, pre) {
 }
 
 truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot");
+
+
+
+/***********
+* Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.
+* For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.
+* Calling this returned function with a single argument will then return the sum:
+* var sumTwoAnd = addTogether(2);
+* sumTwoAnd(3) returns 5.
+* If either argument isn't a valid number, return undefined.
+*****/
+
+function addTogether(...args) {
+  if(args.length==1){
+    //firstVal = args.length[0];
+    if(typeof(args[0]) !== "number") return undefined;
+    else{
+    return function(y){
+      if(typeof(y) !== "number") return undefined;
+      else return args[0]+y;}
+    }
+  }
+  else{
+    if(typeof(args[0]) !== "number"||typeof(args[1]) !== "number") return undefined;
+    else return args[0]+args[1];
+  }
+}
+
+addTogether(2,3);
+
+/*****************
+* Fill in the object constructor with the following methods below:
+* 
+* getFirstName()
+* getLastName()
+* getFullName()
+* setFirstName(first)
+* setLastName(last)
+* setFullName(firstAndLast)
+
+* Run the tests to see the expected output for each method. The methods that take an argument must accept only one argument and it has to be a string. These methods must be the only available means of interacting with the object.
+**************/
+
+const Person = function(firstAndLast) {
+  // Only change code below this line
+  // Complete the method below and implement the others similarly
+  let firstName ="",lastName="";
+  this.getFullName = function() {
+    return firstName + " "+lastName;
+  };
+  this.getFirstName = function() {
+    return firstName;
+  };
+  this.getLastName = function() {
+    return lastName;
+  };
+  this.setFirstName = function(first){
+    firstName = first;
+  };
+  this.setLastName = function(last){
+    lastName = last;
+  };
+  this.setFullName = function(firstnLast){
+    firstName = firstnLast.split(" ")[0];
+    lastName = firstnLast.split(" ")[1];
+  }
+  this.setFullName(firstAndLast);
+  return firstAndLast;
+};
+
+const bob = new Person('Bob Ross');
+console.log(Object.keys(bob));
+console.log(bob.getFullName());
+console.log(bob.getFirstName());
+console.log(bob.getLastName());
+bob.setFirstName("Pants");
+console.log(bob.getFullName());
+bob.setLastName("Shirts");
+console.log(bob.getFullName());
+console.log(bob.getFirstName());
+console.log(bob.getLastName());
+bob.setFullName("Black White");
+console.log(bob.getFullName());
+console.log(bob.getFirstName());
+console.log(bob.getLastName());
