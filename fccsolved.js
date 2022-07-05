@@ -563,3 +563,29 @@ rot13("SERR PBQR PNZC");
 
 
 console.log(convertToRoman(3999));
+
+
+/******
+* US Phone number Regex
+*
+*******/
+
+
+function telephoneCheck(str) {
+  let newRegx = /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/; 
+  return newRegx.test(str);
+}
+
+telephoneCheck("555-555-5555");
+telephoneCheck("1 555 555 5555");
+telephoneCheck("(5551A) 555-5555");
+telephoneCheck("555-555-5555");
+
+
+
+
+
+
+
+
+
