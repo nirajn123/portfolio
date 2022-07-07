@@ -22,14 +22,11 @@ let checkDop = function (input){
       if (input !=="") return "#bd162c";
       else return "#30B700";
 };
-/*
-let changeDateFormat = function (input){
-    let secs = input;
-    let abc= new Date('2001-01-01T01:24:04');//+input.Seconds);
-    //console.log(secs);
-    return abc;
-}
-*/
+let parseDate = function (input){    
+    let parsedData = input.Time.split(":"); 
+    input.Time = new Date('2001-01-01T01:'+parsedData[0]+':'+parsedData[1]); 
+    console.log(input.Time);
+};
 const data_url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
 
 d3.json(
@@ -37,14 +34,13 @@ d3.json(
   )
     .then((data) => {
       
-      //const nDate = data.map((item)=>changeDateFormat(item.Seconds/60).toFixed(2));
-      //let sec = changeDateFormat();
+      let temp = data.map((item)=> parseDate(item));
       const xArr = data.map((item)=>item.Year);
       let xScale = d3.scaleLinear()
       .domain([d3.min(xArr)-1,d3.max(xArr)])
       .range([50, width-100]);
 
-      const yArr = data.map((item)=>(item.Seconds/60).toFixed(2));
+      const yArr = data.map((item)=>(item.Time).toFixed(2));
       let yScale = d3.scaleLinear()
         .domain([(parseFloat(d3.max(yArr))+0.1),(parseFloat(d3.min(yArr)))-0.2])
       .range([height-50,70]);
